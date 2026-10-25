@@ -324,11 +324,14 @@ namespace eclipse::gui {
         auto details = json["details"];
         auto name = json_try_get<std::string>(details, "name");
         if (!name) return std::nullopt;
+        Color main(0.08f, 0.12f, 0.2f);
         Color accent(0.22f, 0.72f, 1.0f);
+        auto mainText = json_try_get<std::string>(json["colors"], "backgroundColor");
         auto colorText = json_try_get<std::string>(json["colors"], "titleBackgroundColor");
+        if (mainText) main = Color::fromString(*mainText);
         if (colorText) accent = Color::fromString(*colorText);
 
-        return ThemeMeta{std::move(name).value(), path, accent};
+        return ThemeMeta{std::move(name).value(), path, main, accent};
     }
 
     std::vector<ThemeMeta> ThemeManager::listAvailableThemes() {
@@ -355,7 +358,18 @@ namespace eclipse::gui {
         globThemes(resources / "Themes");
         globThemes(geode::Mod::get()->getConfigDir() / "themes");
 
+        static constexpr std::array<std::string_view, 15> megaHackOrder = {
+            "Nona", "Nona Lux", "Octavus", "Septima", "Sextus", "Festive", "Genesis", "Catppuccin",
+            "Mint", "Purple Rain", "Platypus", "Barbie", "Navy", "Cyanish", "7up"
+        };
         std::ranges::sort(themes, [](ThemeMeta const& lhs, ThemeMeta const& rhs) {
+            auto rank = [](std::string const& name) {
+                auto it = std::ranges::find(megaHackOrder, name);
+                return it == megaHackOrder.end() ? megaHackOrder.size() : static_cast<size_t>(std::distance(megaHackOrder.begin(), it));
+            };
+            auto leftRank = rank(lhs.name);
+            auto rightRank = rank(rhs.name);
+            if (leftRank != rightRank) return leftRank < rightRank;
             if (lhs.name != rhs.name) return lhs.name < rhs.name;
             return lhs.path < rhs.path;
         });

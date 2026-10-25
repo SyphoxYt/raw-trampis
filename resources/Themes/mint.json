@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Mint",
+    "description": "Mint is a coordinated RawTrampis palette with a distinct panel color, matching controls, readable text, and a complementary accent.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.2,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "162E2CF5",
+    "borderColor": "356458FF",
+    "buttonActivatedColor": "77D8B5FF",
+    "buttonActiveForeground": "162E2CFF",
+    "buttonBackgroundColor": "264942EE",
+    "buttonDisabledColor": "465252FF",
+    "buttonDisabledForeground": "AAB6C8FF",
+    "buttonForegroundColor": "F4F7FFFF",
+    "buttonHoveredColor": "4B8C77FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "2F5A50FF",
+    "checkboxCheckmarkColor": "8ADDBFFF",
+    "checkboxForegroundColor": "F4F7FFFF",
+    "disabledColor": "9AA6B9FF",
+    "foregroundColor": "F1F5FFFF",
+    "searchedColor": "8ADDBFFF",
+    "frameBackground": "264942F2",
+    "titleBackgroundColor": "77D8B5FF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}

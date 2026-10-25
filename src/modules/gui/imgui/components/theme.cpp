@@ -293,9 +293,14 @@ namespace eclipse::gui::imgui {
         if (value >= items.size()) value = std::clamp(value, 0, static_cast<int>(items.size() - 1));
         auto preview = value < items.size() ? items[value] : "";
         bool themePicker = combo->getId() == "themeIndex";
+        auto uiScale = ThemeManager::get()->getGlobalScale();
         if (themePicker) {
-            ImGui::SetNextWindowSizeConstraints(ImVec2(0.f, 120.f), ImVec2(FLT_MAX, 420.f));
-            ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(8.f, 8.f));
+            // Theme rows are deliberately scaled with the selected interface
+            // scale; fixed pixel constraints made the popup tiny on HiDPI.
+            ImGui::SetNextWindowSizeConstraints(
+                ImVec2(245.f * uiScale, 0.f), ImVec2(365.f * uiScale, 440.f * uiScale)
+            );
+            ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(8.f * uiScale, 7.f * uiScale));
         }
         if (ImGui::BeginCombo(fmt::format("##{}", title).c_str(), preview.c_str())) {
             static const std::vector<ThemeMeta> themePreviews = ThemeManager::listAvailableThemes();
@@ -304,12 +309,26 @@ namespace eclipse::gui::imgui {
                 bool clicked = false;
                 if (themePicker) {
                     auto rowStart = ImGui::GetCursorScreenPos();
-                    auto rowHeight = ImGui::GetTextLineHeight() + 12.f;
-                    clicked = ImGui::Selectable(fmt::format("{}##theme-{}", items[n], n).c_str(), is_selected, 0, ImVec2(0.f, rowHeight));
-                    auto swatch = n < static_cast<int>(themePreviews.size()) ? static_cast<ImU32>(themePreviews[n].accentColor) : IM_COL32(70, 170, 255, 255);
-                    auto right = ImGui::GetWindowContentRegionMax().x + ImGui::GetWindowPos().x - 12.f;
-                    ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(right - 19.f, rowStart.y + 5.f), ImVec2(right - 3.f, rowStart.y + rowHeight - 5.f), swatch, 4.f);
-                    ImGui::GetWindowDrawList()->AddRect(ImVec2(right - 19.f, rowStart.y + 5.f), ImVec2(right - 3.f, rowStart.y + rowHeight - 5.f), IM_COL32(255,255,255,150), 4.f);
+                    auto rowHeight = ImGui::GetTextLineHeight() + 12.f * uiScale;
+                    auto rowWidth = ImGui::GetContentRegionAvail().x;
+                    clicked = ImGui::Selectable(fmt::format("##theme-row-{}", n).c_str(), is_selected, 0, ImVec2(rowWidth, rowHeight));
+                    auto* draw = ImGui::GetWindowDrawList();
+                    auto main = n < static_cast<int>(themePreviews.size()) ? static_cast<ImU32>(themePreviews[n].mainColor) : IM_COL32(17, 27, 48, 255);
+                    auto accent = n < static_cast<int>(themePreviews.size()) ? static_cast<ImU32>(themePreviews[n].accentColor) : IM_COL32(70, 170, 255, 255);
+                    auto scale = uiScale;
+                    auto swatchSize = 14.f * scale;
+                    auto swatchGap = 4.f * scale;
+                    auto right = ImGui::GetWindowPos().x + ImGui::GetWindowContentRegionMax().x - 8.f * scale;
+                    auto swatchY = rowStart.y + (rowHeight - swatchSize) * 0.5f;
+                    auto first = ImVec2(right - swatchSize * 2.f - swatchGap, swatchY);
+                    auto second = ImVec2(right - swatchSize, swatchY);
+                    auto frame = IM_COL32(255, 255, 255, 190);
+                    draw->AddRectFilled(first, ImVec2(first.x + swatchSize, first.y + swatchSize), main, 3.f * scale);
+                    draw->AddRectFilled(second, ImVec2(second.x + swatchSize, second.y + swatchSize), accent, 3.f * scale);
+                    draw->AddRect(first, ImVec2(first.x + swatchSize, first.y + swatchSize), frame, 3.f * scale);
+                    draw->AddRect(second, ImVec2(second.x + swatchSize, second.y + swatchSize), frame, 3.f * scale);
+                    auto textY = rowStart.y + (rowHeight - ImGui::GetTextLineHeight()) * 0.5f;
+                    draw->AddText(ImVec2(rowStart.x + 8.f * scale, textY), ImGui::GetColorU32(ImGuiCol_Text), items[n].c_str());
                 } else {
                     clicked = ImGui::Selectable(items[n].c_str(), is_selected);
                 }

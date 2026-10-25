@@ -25,6 +25,7 @@ namespace eclipse::gui {
     struct ThemeMeta {
         std::string name;
         std::filesystem::path path;
+        Color mainColor = Color(0.08f, 0.12f, 0.2f);
         Color accentColor = Color(0.22f, 0.72f, 1.0f);
     };
 

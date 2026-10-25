@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Barbie",
+    "description": "Barbie is a coordinated RawTrampis palette with a distinct panel color, matching controls, readable text, and a complementary accent.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.2,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "32172CF5",
+    "borderColor": "702C55FF",
+    "buttonActivatedColor": "F45AABFF",
+    "buttonActiveForeground": "32172CFF",
+    "buttonBackgroundColor": "512240EE",
+    "buttonDisabledColor": "544752FF",
+    "buttonDisabledForeground": "AAB6C8FF",
+    "buttonForegroundColor": "F4F7FFFF",
+    "buttonHoveredColor": "9D3C72FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "64284DFF",
+    "checkboxCheckmarkColor": "F671B7FF",
+    "checkboxForegroundColor": "F4F7FFFF",
+    "disabledColor": "9AA6B9FF",
+    "foregroundColor": "F1F5FFFF",
+    "searchedColor": "F671B7FF",
+    "frameBackground": "512240F2",
+    "titleBackgroundColor": "F45AABFF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}

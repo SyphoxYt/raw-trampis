@@ -26,6 +26,7 @@ namespace eclipse::gui::imgui {
         // Load saved window states
         {
             auto windowStates = config::get("windows", std::vector<matjson::Value>());
+            m_needsInitialStack = windowStates.empty() && config::get<"menu.stackWindows", bool>(true);
             for (auto &windowState: windowStates) {
                 auto title = windowState["title"].as<std::string>().unwrapOrDefault();
                 auto window = std::ranges::find_if(m_windows, [&title](Window const& w) {
@@ -103,11 +104,13 @@ namespace eclipse::gui::imgui {
             window.draw();
         }
 
-        // Auto reset window positions
+        // Arrange panels once for a fresh layout. Re-stacking every frame makes
+        // manually dragged windows snap back as soon as the mouse is released.
         auto isDragging = config::getTemp<"draggingWindow">(false);
-        auto stackEnabled = config::get<"menu.stackWindows", bool>(true);
-        if (m_actions.empty() && !isDragging && stackEnabled)
+        if (m_needsInitialStack && m_actions.empty() && !isDragging) {
             stackWindows();
+            m_needsInitialStack = false;
+        }
 
         // Reset dragging state
         config::setTemp("draggingWindow", false);

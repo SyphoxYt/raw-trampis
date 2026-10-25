@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Septima",
+    "description": "Septima is a coordinated RawTrampis palette with a distinct panel color, matching controls, readable text, and a complementary accent.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.2,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "21152DF5",
+    "borderColor": "513170FF",
+    "buttonActivatedColor": "B66BFFFF",
+    "buttonActiveForeground": "21152DFF",
+    "buttonBackgroundColor": "39234FEE",
+    "buttonDisabledColor": "4C4652FF",
+    "buttonDisabledForeground": "AAB6C8FF",
+    "buttonForegroundColor": "F4F7FFFF",
+    "buttonHoveredColor": "7344A0FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "482B64FF",
+    "checkboxCheckmarkColor": "C080FFFF",
+    "checkboxForegroundColor": "F4F7FFFF",
+    "disabledColor": "9AA6B9FF",
+    "foregroundColor": "F1F5FFFF",
+    "searchedColor": "C080FFFF",
+    "frameBackground": "39234FF2",
+    "titleBackgroundColor": "B66BFFFF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}

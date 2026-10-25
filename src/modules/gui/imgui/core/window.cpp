@@ -30,7 +30,9 @@ namespace eclipse::gui::imgui {
 
         ImGui::SetNextWindowSizeConstraints({MIN_SIZE.x * scale, MIN_SIZE.y * scale},
                                             {MAX_SIZE.x * scale, maxSizeH});
-
+        // The draw position is animated separately from the persistent position.
+        // Apply it before Begin so ImGui owns the actual window being drawn.
+        ImGui::SetNextWindowPos(m_drawPosition, ImGuiCond_Always);
         ImGui::SetNextWindowCollapsed(!m_isOpen, ImGuiCond_Always);
 
 
@@ -39,18 +41,14 @@ namespace eclipse::gui::imgui {
         }
 
         // Allow moving the window
-        if (ImGui::IsMouseDragging(0) && ImGui::IsWindowHovered()) {
+        if (ImGui::IsWindowHovered(ImGuiHoveredFlags_RootAndChildWindows) && ImGui::IsMouseDragging(0)) {
             m_position = ImGui::GetWindowPos();
-
             m_drawPosition = m_position;
-
             config::setTemp("draggingWindow", true);
         }
 
         m_size = ImGui::GetWindowSize();
         m_isOpen = !ImGui::IsWindowCollapsed();
-
-        ImGui::SetWindowPos(m_drawPosition);
 
         ImGuiRenderer::get()->endWindow();
     }

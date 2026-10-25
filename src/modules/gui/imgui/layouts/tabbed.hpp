@@ -24,5 +24,6 @@ namespace eclipse::gui::imgui {
         std::vector<Window> m_windows;
         std::vector<std::unique_ptr<animation::MoveAction>> m_actions;
         uint8_t m_preloadStep = 0;
+        bool m_needsInitialStack = false;
     };
 }

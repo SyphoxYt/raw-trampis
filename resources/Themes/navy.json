@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Navy",
+    "description": "Navy is a coordinated RawTrampis palette with a distinct panel color, matching controls, readable text, and a complementary accent.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.2,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "111D36F5",
+    "borderColor": "233E6AFF",
+    "buttonActivatedColor": "4A83D7FF",
+    "buttonActiveForeground": "111D36FF",
+    "buttonBackgroundColor": "1A2D50EE",
+    "buttonDisabledColor": "444A56FF",
+    "buttonDisabledForeground": "AAB6C8FF",
+    "buttonForegroundColor": "F4F7FFFF",
+    "buttonHoveredColor": "30558FFF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "203860FF",
+    "checkboxCheckmarkColor": "6394DDFF",
+    "checkboxForegroundColor": "F4F7FFFF",
+    "disabledColor": "9AA6B9FF",
+    "foregroundColor": "F1F5FFFF",
+    "searchedColor": "6394DDFF",
+    "frameBackground": "1A2D50F2",
+    "titleBackgroundColor": "4A83D7FF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}
