@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Aurora",
+    "description": "A cool teal and mint glass palette with soft scene blur.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.25,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "071A20F5",
+    "borderColor": "1B5B58FF",
+    "buttonActivatedColor": "38E0B8FF",
+    "buttonActiveForeground": "06221EFF",
+    "buttonBackgroundColor": "12413DEE",
+    "buttonDisabledColor": "376A65FF",
+    "buttonDisabledForeground": "A9CDC4FF",
+    "buttonForegroundColor": "E9FFF8FF",
+    "buttonHoveredColor": "168A78FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "10332FFF",
+    "checkboxCheckmarkColor": "55F0C2FF",
+    "checkboxForegroundColor": "E9FFF8FF",
+    "disabledColor": "82AAA2FF",
+    "foregroundColor": "E9FFF8FF",
+    "searchedColor": "55F0C2FF",
+    "frameBackground": "0D2B2AF2",
+    "titleBackgroundColor": "138F7DFF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}

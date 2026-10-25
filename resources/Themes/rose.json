@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Rose",
+    "description": "A refined rose and midnight palette with readable high-contrast controls and blur.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.25,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "1B0F1CF5",
+    "borderColor": "63304DFF",
+    "buttonActivatedColor": "FF82B7FF",
+    "buttonActiveForeground": "2B1020FF",
+    "buttonBackgroundColor": "4B233AEE",
+    "buttonDisabledColor": "70465FFF",
+    "buttonDisabledForeground": "DBB6C9FF",
+    "buttonForegroundColor": "FFF0F7FF",
+    "buttonHoveredColor": "A94376FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "351B2AFF",
+    "checkboxCheckmarkColor": "FF9BC5FF",
+    "checkboxForegroundColor": "FFF0F7FF",
+    "disabledColor": "B788A0FF",
+    "foregroundColor": "FFF0F7FF",
+    "searchedColor": "FF9BC5FF",
+    "frameBackground": "291525F2",
+    "titleBackgroundColor": "A94376FF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}

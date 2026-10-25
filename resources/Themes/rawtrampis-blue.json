@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "RawTrampis Blue",
+    "description": "Deep ocean glass with electric cyan highlights, designed for crisp readability and animated panels.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.2,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "071426F5",
+    "borderColor": "163C62FF",
+    "buttonActivatedColor": "28C9FFFF",
+    "buttonActiveForeground": "061323FF",
+    "buttonBackgroundColor": "163150EE",
+    "buttonDisabledColor": "345777FF",
+    "buttonDisabledForeground": "9EBBD4FF",
+    "buttonForegroundColor": "E7F6FFFF",
+    "buttonHoveredColor": "1D77B9FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "102A45FF",
+    "checkboxCheckmarkColor": "38D8FFFF",
+    "checkboxForegroundColor": "E7F6FFFF",
+    "disabledColor": "7895AEFF",
+    "foregroundColor": "E7F6FFFF",
+    "searchedColor": "38D8FFFF",
+    "frameBackground": "0D2038F2",
+    "titleBackgroundColor": "126AA8FF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}

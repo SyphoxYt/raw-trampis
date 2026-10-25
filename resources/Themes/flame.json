@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Flame",
+    "description": "A warm ember theme with deep charcoal panels, vivid orange accents, and background blur.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.25,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "21100DF5",
+    "borderColor": "69351FFF",
+    "buttonActivatedColor": "FF7138FF",
+    "buttonActiveForeground": "2A1108FF",
+    "buttonBackgroundColor": "582718EE",
+    "buttonDisabledColor": "78462FFF",
+    "buttonDisabledForeground": "E2B6A0FF",
+    "buttonForegroundColor": "FFF0E6FF",
+    "buttonHoveredColor": "C54B22FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "3A1B13FF",
+    "checkboxCheckmarkColor": "FF9A45FF",
+    "checkboxForegroundColor": "FFF0E6FF",
+    "disabledColor": "C08B72FF",
+    "foregroundColor": "FFF0E6FF",
+    "searchedColor": "FFC15AFF",
+    "frameBackground": "32180FF2",
+    "titleBackgroundColor": "C94B20FF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}

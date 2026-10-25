@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Emerald",
+    "description": "An emerald green and graphite palette tuned for clear text and blurred backgrounds.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.25,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "08180FF5",
+    "borderColor": "245637FF",
+    "buttonActivatedColor": "67E58AFF",
+    "buttonActiveForeground": "0A2111FF",
+    "buttonBackgroundColor": "19402AEE",
+    "buttonDisabledColor": "3F694CFF",
+    "buttonDisabledForeground": "B2D2B8FF",
+    "buttonForegroundColor": "EEFFF0FF",
+    "buttonHoveredColor": "268847FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "12301FFF",
+    "checkboxCheckmarkColor": "78F59AFF",
+    "checkboxForegroundColor": "EEFFF0FF",
+    "disabledColor": "88AE91FF",
+    "foregroundColor": "EEFFF0FF",
+    "searchedColor": "78F59AFF",
+    "frameBackground": "102819F2",
+    "titleBackgroundColor": "247A40FF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}
