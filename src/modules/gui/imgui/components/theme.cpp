@@ -298,11 +298,12 @@ namespace eclipse::gui::imgui {
             // Theme rows are deliberately scaled with the selected interface
             // scale; fixed pixel constraints made the popup tiny on HiDPI.
             ImGui::SetNextWindowSizeConstraints(
-                ImVec2(245.f * uiScale, 0.f), ImVec2(365.f * uiScale, 440.f * uiScale)
+                ImVec2(250.f * uiScale, 180.f * uiScale), ImVec2(380.f * uiScale, 440.f * uiScale)
             );
             ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(8.f * uiScale, 7.f * uiScale));
         }
-        if (ImGui::BeginCombo(fmt::format("##{}", title).c_str(), preview.c_str())) {
+        auto comboFlags = themePicker ? ImGuiComboFlags_HeightLarge : ImGuiComboFlags_None;
+        if (ImGui::BeginCombo(fmt::format("##{}", title).c_str(), preview.c_str(), comboFlags)) {
             static const std::vector<ThemeMeta> themePreviews = ThemeManager::listAvailableThemes();
             for (int n = 0; n < items.size(); n++) {
                 bool const is_selected = (value == n);

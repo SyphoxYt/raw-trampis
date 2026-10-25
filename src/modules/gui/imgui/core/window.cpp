@@ -1,4 +1,6 @@
 #include "window.hpp"
+#include <algorithm>
+#include <cmath>
 #include <modules/config/config.hpp>
 #include <modules/gui/imgui/imgui.hpp>
 #include <modules/gui/theming/manager.hpp>
@@ -26,13 +28,16 @@ namespace eclipse::gui::imgui {
         auto maxSizeH = MAX_SIZE.y * scale;
         auto bottomMargin = tm->getWindowMargin();
         if (m_position.y + m_size.y > screenSize.y - bottomMargin - 1) // -1 to prevent flickering
-            maxSizeH = screenSize.y - m_position.y - bottomMargin;
+            maxSizeH = std::max(MIN_SIZE.y * scale, screenSize.y - m_position.y - bottomMargin);
 
         ImGui::SetNextWindowSizeConstraints({MIN_SIZE.x * scale, MIN_SIZE.y * scale},
                                             {MAX_SIZE.x * scale, maxSizeH});
-        // The draw position is animated separately from the persistent position.
-        // Apply it before Begin so ImGui owns the actual window being drawn.
-        ImGui::SetNextWindowPos(m_drawPosition, ImGuiCond_Always);
+        // Apply positions only while an animation is in flight. Forcing a
+        // position every frame overrides ImGui's own title-bar drag handling.
+        auto dx = m_drawPosition.x - m_position.x;
+        auto dy = m_drawPosition.y - m_position.y;
+        if (std::abs(dx) > 0.5f || std::abs(dy) > 0.5f)
+            ImGui::SetNextWindowPos(m_drawPosition, ImGuiCond_Always);
         ImGui::SetNextWindowCollapsed(!m_isOpen, ImGuiCond_Always);
 
 
@@ -40,7 +45,8 @@ namespace eclipse::gui::imgui {
             m_drawCallback();
         }
 
-        // Allow moving the window
+        // Once ImGui moves a window, persist that position and keep the
+        // animation position in sync so future transitions start correctly.
         if (ImGui::IsWindowHovered(ImGuiHoveredFlags_RootAndChildWindows) && ImGui::IsMouseDragging(0)) {
             m_position = ImGui::GetWindowPos();
             m_drawPosition = m_position;

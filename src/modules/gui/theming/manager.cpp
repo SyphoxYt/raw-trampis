@@ -460,7 +460,7 @@ namespace eclipse::gui {
     void ThemeManager::setBlurEnabled(bool value) {
         if (m_enableBlur == value) return;
         m_enableBlur = value;
-        blur::toggle(value);
+        blur::toggle(value && m_renderer != RendererType::Cocos2d);
     }
 }
 

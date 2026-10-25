@@ -233,11 +233,9 @@ namespace eclipse::gui {
 
         m_renderer->init();
 
-        // update blur state
-        blur::toggle(
-            config::getTemp("blurEnabled", false)
-            && type != RendererType::Cocos2d
-        );
+        // The theme manager owns the persistent blur preference. Reading the
+        // transient UI config here reset blur to off during renderer changes.
+        blur::toggle(tm->getBlurEnabled() && type != RendererType::Cocos2d);
     }
 
     RendererType Engine::getRendererType() {
