@@ -643,9 +643,15 @@
     "shortcuts.clipsy": "Open Clipsy",
     "shortcuts.clipsy.desc": "Opens new chat with Clipsy - an AI chatbot",
     "tab.rawtrampis": "RawTrampis",
-    "rawtrampis.pro-label": "RAWTRAMPIS PRO  |  VERSION 4.2",
+    "rawtrampis.pro-label": "RawTrampis Pro  |  Version 4.3",
     "rawtrampis.clear-search": "Clear Search",
     "rawtrampis.clear-search.desc": "Clear the search field and restore every category and feature.",
     "rawtrampis.reset-theme": "Reset Theme",
-    "rawtrampis.reset-theme.desc": "Restore the bundled RawTrampis Blue theme."
+    "rawtrampis.reset-theme.desc": "Restore the bundled RawTrampis Blue theme.",
+    "rawtrampis.profile-name": "Profile Name",
+    "rawtrampis.profile-name.desc": "Choose a safe name for your saved RawTrampis setup.",
+    "rawtrampis.save-profile": "Save Profile",
+    "rawtrampis.save-profile.desc": "Save your current feature settings and interface configuration as a reusable profile.",
+    "rawtrampis.load-profile": "Load Profile",
+    "rawtrampis.load-profile.desc": "Load the profile matching the name above and immediately refresh registered feature settings."
 }

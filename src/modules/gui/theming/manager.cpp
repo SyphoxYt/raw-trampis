@@ -324,8 +324,11 @@ namespace eclipse::gui {
         auto details = json["details"];
         auto name = json_try_get<std::string>(details, "name");
         if (!name) return std::nullopt;
+        Color accent(0.22f, 0.72f, 1.0f);
+        auto colorText = json_try_get<std::string>(json["colors"], "titleBackgroundColor");
+        if (colorText) accent = Color::fromString(*colorText);
 
-        return ThemeMeta{std::move(name).value(), path};
+        return ThemeMeta{std::move(name).value(), path, accent};
     }
 
     std::vector<ThemeMeta> ThemeManager::listAvailableThemes() {

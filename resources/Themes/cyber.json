@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Cyber",
+    "description": "Cyber is a high-contrast animated RawTrampis palette with coordinated panel, control, and accent colors.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.2,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "0E1328F5",
+    "borderColor": "3347A8FF",
+    "buttonActivatedColor": "61F2D5FF",
+    "buttonActiveForeground": "10162FFF",
+    "buttonBackgroundColor": "202A52EE",
+    "buttonDisabledColor": "49577FFF",
+    "buttonDisabledForeground": "C3CCE6FF",
+    "buttonForegroundColor": "F1F4FFFF",
+    "buttonHoveredColor": "6F65E6FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "182143FF",
+    "checkboxCheckmarkColor": "6AF2D8FF",
+    "checkboxForegroundColor": "F1F4FFFF",
+    "disabledColor": "929DBFFF",
+    "foregroundColor": "EFF3FFFF",
+    "searchedColor": "76F7DEFF",
+    "frameBackground": "151D3BF2",
+    "titleBackgroundColor": "515CE0FF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}

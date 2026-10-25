@@ -53,6 +53,8 @@ std::pair<std::optional<std::string>, float> truncateString(std::string_view str
 
 namespace eclipse::gui::imgui {
 
+    static std::string s_pendingKeybindCapture;
+
     std::vector<std::string> THEME_NAMES = {
         "ImGui", "MegaHack", "MegaOverlay", "Gruvbox", "OpenHack"
     };
@@ -62,6 +64,10 @@ namespace eclipse::gui::imgui {
 #define CASE(x) case ComponentType::x: \
     this->visit##x(static_cast<x##Component*>(component)); break
 
+        bool dimForSearch = config::getTemp<bool>("search.active", false) &&
+            !(component->getFlags() & ComponentFlags::SearchedFor) &&
+            component->getId() != "search";
+        if (dimForSearch) ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 0.34f);
         ImGui::PushID(component->getId().c_str());
         switch (component->getType()) {
             default: break;
@@ -75,6 +81,7 @@ namespace eclipse::gui::imgui {
             CASE(IntToggle);
         }
         ImGui::PopID();
+        if (dimForSearch) ImGui::PopStyleVar();
 
 #undef CASE
     }
@@ -122,11 +129,23 @@ namespace eclipse::gui::imgui {
 
             if (keybind.has_value()) {
                 auto& keybindRef = keybind->get();
-
-                if (!keybindRef.isInitialized() && ImGui::MenuItem(i18n::get("keybinds.add").data())) {
+                auto settingKey = fmt::format("keybind.{}.key", id);
+                auto current = keybinds::keyToString(config::get<keybinds::KeybindProps>(settingKey, keybinds::Keys::None));
+                if (keybindRef.isInitialized()) {
+                    auto currentLabel = fmt::format("Current: {}", current);
+                    ImGui::MenuItem(currentLabel.c_str(), nullptr, false, false);
+                    if (ImGui::MenuItem("Change Keybind...")) {
+                        s_pendingKeybindCapture = std::string(id);
+                        auto emptyKey = keybinds::KeybindProps(keybinds::Keys::None);
+                        config::set<keybinds::KeybindProps>(settingKey, emptyKey);
+                        keybindRef.setKey(emptyKey);
+                    }
+                    if (ImGui::MenuItem(i18n::get("keybinds.remove").data())) {
+                        keybinds->setKeybindState(id, false);
+                    }
+                } else if (ImGui::MenuItem(i18n::get("keybinds.add").data())) {
                     keybinds->setKeybindState(id, true);
-                } else if (keybindRef.isInitialized() && ImGui::MenuItem(i18n::get("keybinds.remove").data())) {
-                    keybinds->setKeybindState(id, false);
+                    s_pendingKeybindCapture = std::string(id);
                 }
             }
             ImGui::PopStyleColor();
@@ -273,10 +292,28 @@ namespace eclipse::gui::imgui {
         ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x * (title.empty() ? .9f : .5f));
         if (value >= items.size()) value = std::clamp(value, 0, static_cast<int>(items.size() - 1));
         auto preview = value < items.size() ? items[value] : "";
+        bool themePicker = combo->getId() == "themeIndex";
+        if (themePicker) {
+            ImGui::SetNextWindowSizeConstraints(ImVec2(0.f, 120.f), ImVec2(FLT_MAX, 420.f));
+            ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(8.f, 8.f));
+        }
         if (ImGui::BeginCombo(fmt::format("##{}", title).c_str(), preview.c_str())) {
+            static const std::vector<ThemeMeta> themePreviews = ThemeManager::listAvailableThemes();
             for (int n = 0; n < items.size(); n++) {
                 bool const is_selected = (value == n);
-                if (ImGui::Selectable(items[n].c_str(), is_selected)) {
+                bool clicked = false;
+                if (themePicker) {
+                    auto rowStart = ImGui::GetCursorScreenPos();
+                    auto rowHeight = ImGui::GetTextLineHeight() + 12.f;
+                    clicked = ImGui::Selectable(fmt::format("{}##theme-{}", items[n], n).c_str(), is_selected, 0, ImVec2(0.f, rowHeight));
+                    auto swatch = n < static_cast<int>(themePreviews.size()) ? static_cast<ImU32>(themePreviews[n].accentColor) : IM_COL32(70, 170, 255, 255);
+                    auto right = ImGui::GetWindowContentRegionMax().x + ImGui::GetWindowPos().x - 12.f;
+                    ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(right - 19.f, rowStart.y + 5.f), ImVec2(right - 3.f, rowStart.y + rowHeight - 5.f), swatch, 4.f);
+                    ImGui::GetWindowDrawList()->AddRect(ImVec2(right - 19.f, rowStart.y + 5.f), ImVec2(right - 3.f, rowStart.y + rowHeight - 5.f), IM_COL32(255,255,255,150), 4.f);
+                } else {
+                    clicked = ImGui::Selectable(items[n].c_str(), is_selected);
+                }
+                if (clicked) {
                     combo->setValue(n);
                     combo->triggerCallback(n);
                 }
@@ -285,6 +322,7 @@ namespace eclipse::gui::imgui {
             }
             ImGui::EndCombo();
         }
+        if (themePicker) ImGui::PopStyleVar();
         ImGui::PopItemWidth();
 
         ImGui::SetNextItemWidth(5.f);
@@ -524,6 +562,9 @@ namespace eclipse::gui::imgui {
     }
 
     void Theme::visitKeybind(KeybindComponent* keybind) const {
+        static std::string recentlySetId;
+        static std::string recentlySetName;
+        static double recentlySetAt = 0.0;
         auto title = i18n::get(keybind->getTitle());
         auto canDelete = keybind->canDelete();
 
@@ -565,10 +606,16 @@ namespace eclipse::gui::imgui {
         ImGui::PopStyleVar();
 
         auto popupName = fmt::format("##{}-popup", keybind->getId());
+        if (s_pendingKeybindCapture == keybind->getId()) {
+            ImGui::OpenPopup(popupName.c_str());
+            s_pendingKeybindCapture.clear();
+        }
         if (changed) ImGui::OpenPopup(popupName.c_str());
 
         if (ImGui::BeginPopup(popupName.c_str())) {
             ImGuiCocos::get().setInputMode(ImGuiCocos::InputMode::Blocking);
+            ImGui::Text("Current: %s", keyName.c_str());
+            ImGui::Separator();
             ImGui::Text("%s", i18n::get("keybinds.press-key").c_str());
             ImGui::Separator();
 
@@ -600,12 +647,20 @@ namespace eclipse::gui::imgui {
             } else if (releasedKey.key != keybinds::Keys::None) {
                 config::set<keybinds::KeybindProps>(keybind->getId(), releasedKey);
                 keybind->triggerCallback(releasedKey);
+                recentlySetId = keybind->getId();
+                recentlySetName = keybinds::keyToString(releasedKey);
+                recentlySetAt = ImGui::GetTime();
                 ImGui::CloseCurrentPopup();
                 releasedKey = {};
                 activeKeybindId.clear();
             }
 
             ImGui::EndPopup();
+        }
+
+        if (recentlySetId == keybind->getId() && ImGui::GetTime() - recentlySetAt < 2.0) {
+            ImGui::SameLine();
+            ImGui::TextColored(ImVec4(0.35f, 0.9f, 0.65f, 1.f), "Set: %s", recentlySetName.c_str());
         }
 
         if (canDelete) {

@@ -25,6 +25,7 @@ namespace eclipse::gui {
     struct ThemeMeta {
         std::string name;
         std::filesystem::path path;
+        Color accentColor = Color(0.22f, 0.72f, 1.0f);
     };
 
     /// @brief Holds current theme configuration and manages saving/loading themes.

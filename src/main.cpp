@@ -33,6 +33,18 @@ using namespace eclipse;
 
 static bool s_isInitialized = false;
 
+static std::string safeProfileName(std::string value) {
+    std::string result;
+    result.reserve(std::min<size_t>(value.size(), 48));
+    for (unsigned char c : value) {
+        if (result.size() >= 48) break;
+        if (std::isalnum(c) || c == '-' || c == '_') result.push_back(static_cast<char>(c));
+        else if (c == ' ' && !result.empty() && result.back() != '-') result.push_back('-');
+    }
+    while (!result.empty() && (result.back() == '-' || result.back() == '_')) result.pop_back();
+    return result.empty() ? "My-Pro-Setup" : result;
+}
+
 static void toggleMenu(keybinds::KeyEvent evt = {}) {
     // Floating-button calls have no key event; the keyboard binding is dispatched
     // only on key-down. Ignore releases in case a caller ever forwards them here.
@@ -198,6 +210,7 @@ $on_mod(Loaded) {
                 return value;
             };
             auto query = normalize(input);
+            config::setTemp("search.active", !query.empty());
             for (auto& currentTab : Engine::get().getTabs()) {
                 bool hasFoundComponent = false;
                 for (auto& component : currentTab.getComponents()) {
@@ -235,6 +248,20 @@ $on_mod(Loaded) {
             if (!ThemeManager::get()->loadTheme(it->path)) return;
             config::set("themeIndex", index);
             ThemeManager::get()->saveTheme();
+        })->setDescription();
+
+        auto profileName = tab->addInputText("rawtrampis.profile-name", "profileName");
+        profileName->setValue(config::get<std::string>("rawtrampis.profile-name", "My Pro Setup"));
+        profileName->callback([](std::string value) { config::set("rawtrampis.profile-name", value); });
+        tab->addButton("rawtrampis.save-profile")->callback([profileName] {
+            auto name = safeProfileName(profileName->getValue());
+            config::saveProfile(name);
+            config::save();
+        })->setDescription();
+        tab->addButton("rawtrampis.load-profile")->callback([profileName] {
+            auto name = safeProfileName(profileName->getValue());
+            auto availableProfiles = config::getProfiles();
+            if (std::ranges::find(availableProfiles, name) != availableProfiles.end()) config::loadProfile(name);
         })->setDescription();
     }
 

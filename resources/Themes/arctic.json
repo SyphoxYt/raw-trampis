@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Arctic",
+    "description": "Arctic is a high-contrast animated RawTrampis palette with coordinated panel, control, and accent colors.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.2,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "081A2BF5",
+    "borderColor": "315777FF",
+    "buttonActivatedColor": "62D6FFFF",
+    "buttonActiveForeground": "08213AFF",
+    "buttonBackgroundColor": "173B5CEE",
+    "buttonDisabledColor": "43657DFF",
+    "buttonDisabledForeground": "B9D0DEFF",
+    "buttonForegroundColor": "F1FBFFFF",
+    "buttonHoveredColor": "2E91C8FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "12344DFF",
+    "checkboxCheckmarkColor": "7BE4FFFF",
+    "checkboxForegroundColor": "F1FBFFFF",
+    "disabledColor": "8BA9BBFF",
+    "foregroundColor": "EAF8FFFF",
+    "searchedColor": "8DE9FFFF",
+    "frameBackground": "0D2437F2",
+    "titleBackgroundColor": "167AAEFF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}

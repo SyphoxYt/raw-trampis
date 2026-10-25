@@ -18,7 +18,7 @@ $pathEntries = @($cmakeBin, $ninjaBin, $llvmBin, (Join-Path $tools "geode-cli"))
 $env:PATH = (($pathEntries | Where-Object { $_ } | Select-Object -Unique) -join ";")
 $env:GEODE_SDK = $sdk
 $env:CPM_SOURCE_CACHE = $cache
-$env:ECLIPSE_TRANSLATIONS_REPO_PATH = Join-Path $project 'local-translations'
+Remove-Item Env:ECLIPSE_TRANSLATIONS_REPO_PATH -ErrorAction SilentlyContinue
 $env:GIT_EXEC_PATH = Join-Path $tools "git-portable-full\ucrt64\libexec\git-core"
 $vswhere = Join-Path ${env:ProgramFiles(x86)} "Microsoft Visual Studio\Installer\vswhere.exe"
 if (-not (Test-Path $vswhere)) { throw "Visual Studio Build Tools are missing. Install the C++ workload and Windows SDK first." }

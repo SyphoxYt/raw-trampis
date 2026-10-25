@@ -141,7 +141,15 @@ namespace eclipse::config {
         if (!loadFile(path)) {
             geode::log::warn("Failed to load profile: {}", profile);
             load(); // Load the default config
+            return;
         }
+
+        // Notify feature delegates so live state follows the loaded profile.
+        for (auto const& [name, callbacks] : getCallbacks()) {
+            (void)callbacks;
+            executeCallbacks(name);
+        }
+        save();
     }
 
     void deleteProfile(std::string_view profile) {

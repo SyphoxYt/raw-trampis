@@ -12,7 +12,7 @@ else()
 endif()
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
-project(RawTrampis VERSION 4.2.0 LANGUAGES CXX)
+project(RawTrampis VERSION 4.3.0 LANGUAGES CXX)
 
 # Sources
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
@@ -92,6 +92,19 @@ add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 # Libraries
 include(${CMAKE_SOURCE_DIR}/cmake/IncludeLibs.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
+# Keep the checked-in English strings (including RawTrampis UI labels) aligned
+# with the bundled translation source after upstream translations are staged.
+file(COPY_FILE
+    "${CMAKE_SOURCE_DIR}/local-translations/translations/en_US.lang.json"
+    "${CMAKE_SOURCE_DIR}/resources/translations/en_US.lang.json"
+    ONLY_IF_DIFFERENT
+)
+add_custom_command(TARGET ${PROJECT_NAME} PRE_LINK
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_SOURCE_DIR}/local-translations/translations/en_US.lang.json"
+        "${CMAKE_SOURCE_DIR}/resources/translations/en_US.lang.json"
+    COMMENT "Restoring RawTrampis English strings..."
+)
 target_link_libraries(${PROJECT_NAME} third_party)
 
 # Setup Geode

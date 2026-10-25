@@ -1,0 +1,53 @@
+{
+  "details": {
+    "author": "Trampis",
+    "name": "Sunset",
+    "description": "Sunset is a high-contrast animated RawTrampis palette with coordinated panel, control, and accent colors.",
+    "layout": 0,
+    "renderer": 0,
+    "schema": 1,
+    "style": 1
+  },
+  "blur": {
+    "blurEnabled": true,
+    "blurRadius": 1.2,
+    "blurSpeed": 0.26
+  },
+  "colors": {
+    "backgroundColor": "271326F5",
+    "borderColor": "763B5AFF",
+    "buttonActivatedColor": "FFB347FF",
+    "buttonActiveForeground": "34162AFF",
+    "buttonBackgroundColor": "592544EE",
+    "buttonDisabledColor": "77516EFF",
+    "buttonDisabledForeground": "E1BED8FF",
+    "buttonForegroundColor": "FFF2FAFF",
+    "buttonHoveredColor": "D34E83FF",
+    "buttonHoveredForeground": "FFFFFFFF",
+    "checkboxBackgroundColor": "3D1D35FF",
+    "checkboxCheckmarkColor": "FFD16FFF",
+    "checkboxForegroundColor": "FFF2FAFF",
+    "disabledColor": "C29AB7FF",
+    "foregroundColor": "FFF0F7FF",
+    "searchedColor": "FFD16FFF",
+    "frameBackground": "30182DF2",
+    "titleBackgroundColor": "D94B76FF",
+    "titleForegroundColor": "FFFFFFFF"
+  },
+  "other": {
+    "borderSize": 0.5,
+    "font": "Poppins",
+    "fontSize": 18,
+    "framePadding": 3.0,
+    "frameRounding": 6,
+    "horizontalInnerSpacing": 8.0,
+    "horizontalSpacing": 12.0,
+    "indentSpacing": 25.0,
+    "uiScale": 1.0,
+    "verticalInnerSpacing": 6.0,
+    "verticalSpacing": 2.0,
+    "windowMargin": 4.0,
+    "windowPadding": 8,
+    "windowRounding": 7
+  }
+}
