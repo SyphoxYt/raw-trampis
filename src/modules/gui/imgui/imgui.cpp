@@ -239,6 +239,7 @@ namespace eclipse::gui::imgui {
                 style.DisplaySafeAreaPadding = ImVec2(0, 0);
                 if (m_theme) m_theme->init();
                 m_fontManager.init();
+                if (m_layout) m_layout->restoreWindowPositions();
             })
             .draw([this] {
                 if (!s_initialized) return;

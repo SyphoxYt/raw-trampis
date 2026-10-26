@@ -48,6 +48,7 @@ namespace eclipse::gui::imgui {
 
         [[nodiscard]] ImVec2 const& getDrawPosition() const;
         void setDrawPosition(ImVec2 const& position);
+        void restorePositionOnNextDraw();
 
         [[nodiscard]] ImVec2 const& getSize() const;
         void setSize(ImVec2 const& size);
@@ -74,6 +75,7 @@ namespace eclipse::gui::imgui {
         ImVec2 m_size;         // Window size
 
         bool m_isOpen;       // Whether the window is collapsed or not
+        bool m_restorePosition = false;
     };
 }
 

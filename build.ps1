@@ -61,7 +61,7 @@ New-Item -ItemType Directory -Force -Path $cache | Out-Null
 
 cmake -S $project -B $buildDir -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_MAKE_PROGRAM="$($ninjaCmd.Source)" -DCMAKE_C_COMPILER="$($clangCmd.Source)" -DCMAKE_CXX_COMPILER="$($clangCmd.Source)"
 if ($LASTEXITCODE -ne 0) { throw "CMake configure failed with exit code $LASTEXITCODE" }
-cmake --build $buildDir --target RawTrampis_PACKAGE --parallel 4
+cmake --build $buildDir --target RawTrampis_PACKAGE --parallel 2
 if ($LASTEXITCODE -ne 0) { throw "Mod build/package failed with exit code $LASTEXITCODE" }
 
 $package = Get-ChildItem $buildDir -Filter "rawtrampis.mod.geode" -Recurse | Select-Object -First 1

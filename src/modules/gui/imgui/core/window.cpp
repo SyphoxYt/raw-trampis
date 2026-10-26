@@ -36,20 +36,26 @@ namespace eclipse::gui::imgui {
         // position every frame overrides ImGui's own title-bar drag handling.
         auto dx = m_drawPosition.x - m_position.x;
         auto dy = m_drawPosition.y - m_position.y;
-        if (std::abs(dx) > 0.5f || std::abs(dy) > 0.5f)
+        if (m_restorePosition || std::abs(dx) > 0.5f || std::abs(dy) > 0.5f)
             ImGui::SetNextWindowPos(m_drawPosition, ImGuiCond_Always);
         ImGui::SetNextWindowCollapsed(!m_isOpen, ImGuiCond_Always);
 
 
-        if (ImGuiRenderer::get()->beginWindow(m_title)) {
+        auto visible = ImGuiRenderer::get()->beginWindow(m_title);
+        m_restorePosition = false;
+        if (visible) {
             m_drawCallback();
         }
 
-        // Once ImGui moves a window, persist that position and keep the
-        // animation position in sync so future transitions start correctly.
-        if (ImGui::IsWindowHovered(ImGuiHoveredFlags_RootAndChildWindows) && ImGui::IsMouseDragging(0)) {
-            m_position = ImGui::GetWindowPos();
-            m_drawPosition = m_position;
+        // Persist actual ImGui movement (including a drag that continues just
+        // outside the window) and keep animation state synchronized.
+        auto actualPosition = ImGui::GetWindowPos();
+        auto movedX = actualPosition.x - m_drawPosition.x;
+        auto movedY = actualPosition.y - m_drawPosition.y;
+        bool movedByUser = std::abs(movedX) > 0.5f || std::abs(movedY) > 0.5f;
+        if (movedByUser) {
+            m_position = actualPosition;
+            m_drawPosition = actualPosition;
             config::setTemp("draggingWindow", true);
         }
 
@@ -82,6 +88,8 @@ namespace eclipse::gui::imgui {
     ImVec2 const& Window::getDrawPosition() const { return m_drawPosition; }
 
     void Window::setDrawPosition(ImVec2 const& position) { m_drawPosition = position; }
+
+    void Window::restorePositionOnNextDraw() { m_restorePosition = true; }
 
     ImVec2 const& Window::getSize() const { return m_size; }
 

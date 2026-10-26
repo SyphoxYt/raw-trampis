@@ -1,28 +1,43 @@
 # RawTrampis Pro — Release History
 
-This changelog records the project’s user-visible changes from the v1 releases through v4.5.0. Older entries summarize the changes made during those release lines.
+This changelog records the project’s user-visible changes from v1.0.0 through v4.6.0. The headings use Geode-supported color tags so important fixes and updates are easy to scan.
+
+## v4.6.0 — Theme switching and layout persistence
+
+**A focused reliability release for theme changes, panel layout, and project licensing.**
+
+### <c-40e34a>FIXED</c> Theme switching
+- Fixed the ImGui context refresh that made the interface collapse into a single narrow column after a theme or font reload.
+- Reapplied each tab panel’s saved on-screen position after the new ImGui context is created, while preserving the selected theme and animations.
+- Kept regular user dragging native to ImGui; position restoration is a one-frame operation after context creation, not a per-frame lock.
+
+### <c-40e34a>FIXED</c> Persistent panel positions
+- Save each tab’s position as soon as a drag finishes, so an unexpected game exit or restart no longer discards the most recent arrangement.
+- Track ImGui’s actual window movement and synchronize it with the animation position, including drags that continue just beyond the panel edge.
+
+### <c-4aa3df>UPDATED</c> Description and changelog
+- Expanded the description with the updated theme refresh behavior, panel-position persistence, and the complete navigation and customization overview.
+- Reorganized the release notes with clear, color-coded FIXED and UPDATED headings while preserving the v1–v4.5 history.
+
+### <c-4aa3df>UPDATED</c> Licensing notice
+- Added the RawTrampis License notice for project-owned original contributions and assets.
+- Kept the complete EPL-2.0 text in `LICENSE-EPL-2.0.md` for Eclipse-derived code and documented the license boundaries in `LICENSE.md`.
+
+---
 
 ## v4.5.0 — Interface stability and polish
 
-### <c-40e34a>FIXED</c> Window movement
-- Restored title-bar dragging by allowing ImGui to own a panel’s position between animation frames.
-- Synchronized the saved position with the live window position while dragging, so panels no longer snap back or jump on the next animation.
-- Kept animated open/close transitions while preventing their position updates from overriding user movement.
-- Clamped the available panel height to a valid minimum near the bottom edge of the screen, avoiding invalid size constraints.
-
-### <c-40e34a>FIXED</c> Blur state
-- Fixed renderer changes resetting blur from a temporary setting that could be unset even when the selected theme enabled blur.
-- Blur now follows the active theme’s saved preference and is disabled safely for renderers that do not support the desktop ImGui blur path.
-- Preserved the existing animated blur transition and theme-configured intensity.
+### <c-40e34a>FIXED</c> Window movement and blur
+- Restored title-bar dragging without overriding ImGui’s normal movement between animation frames.
+- Synchronized saved panel positions with live movement and clamped bottom-edge size constraints to a valid minimum.
+- Fixed renderer changes resetting blur from an unset temporary value; blur now follows the theme preference and is disabled safely on unsupported renderers.
 
 ### <c-40e34a>FIXED</c> Theme picker
-- Applied explicit large-list combo behavior so theme choices have a predictable scrollable popup.
-- Added scaled minimum and maximum popup bounds, improving the first-open layout on different UI scales and resolutions.
-- Kept the two palette swatches visible beside each theme name and retained the MegaHack-inspired ordering.
+- Added large-list popup behavior and scale-aware bounds for a more reliable scrollable theme list.
+- Kept side-by-side main and accent previews in MegaHack-inspired palette order.
 
-### <c-4aa3df>UPDATED</c> Description and release notes
-- Expanded the mod description with navigation, dragging, search, themes, blur support, profiles, keybind capture, categories, practice behavior, and compatibility details.
-- Added this release’s fixes using Geode-supported inline color tags so each FIXED/UPDATED label is easy to scan.
+### <c-4aa3df>UPDATED</c> Mod information
+- Expanded the description with navigation, themes, search, profiles, keybinds, practice behavior, and compatibility notes.
 
 ## v4.4.0
 

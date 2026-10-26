@@ -17,6 +17,10 @@ namespace eclipse::gui::imgui {
         virtual void draw() = 0;
         virtual void toggle(bool state) = 0;
 
+        // Called whenever the ImGui context is created again (for example
+        // after a font/theme reload) so layouts can restore persistent state.
+        virtual void restoreWindowPositions() {}
+
         // this function should return true as long as you want the layout to stay visible
         // after the menu has been toggled off
         [[nodiscard]] virtual bool wantStayVisible() const { return false; }

@@ -12,6 +12,7 @@ namespace eclipse::gui::imgui {
         void init() override;
         void draw() override;
         void toggle(bool state) override;
+        void restoreWindowPositions() override;
         bool wantStayVisible() const override;
 
     public:
@@ -25,5 +26,6 @@ namespace eclipse::gui::imgui {
         std::vector<std::unique_ptr<animation::MoveAction>> m_actions;
         uint8_t m_preloadStep = 0;
         bool m_needsInitialStack = false;
+        bool m_wasDraggingWindow = false;
     };
 }

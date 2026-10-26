@@ -10,6 +10,7 @@ namespace eclipse::gui::imgui {
 
     void TabbedLayout::init() {
         m_windows.clear();
+        m_wasDraggingWindow = false;
 
         // Load tabs
         auto& tabs = Engine::get().getTabs();
@@ -112,6 +113,16 @@ namespace eclipse::gui::imgui {
             m_needsInitialStack = false;
         }
 
+        // Persist a completed move immediately, not only when the menu closes.
+        if (m_wasDraggingWindow && !isDragging) {
+            std::vector<matjson::Value> windowStates;
+            windowStates.reserve(m_windows.size());
+            for (auto& window : m_windows) windowStates.push_back(window);
+            config::set("windows", std::move(windowStates));
+            config::save();
+        }
+        m_wasDraggingWindow = isDragging;
+
         // Reset dragging state
         config::setTemp("draggingWindow", false);
 
@@ -143,6 +154,11 @@ namespace eclipse::gui::imgui {
                 m_actions.push_back(window.animateTo(target, duration, easing));
             }
         }
+    }
+
+    void TabbedLayout::restoreWindowPositions() {
+        for (auto& window : m_windows)
+            window.restorePositionOnNextDraw();
     }
 
     /// @brief Calculate a random window position outside the screen.
